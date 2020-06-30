@@ -2,18 +2,28 @@ import React, { Component } from 'react';
 
 class ToyCard extends Component {
 
+  handleDeleteToy = (toyId) => {
+    this.props.onHandleDeleteToy(this.props.toyData.id)
+  }
+
+  handleLikes = (toy) => {
+    this.props.onHandleLikes(this.props.toyData)
+  }
+
   render() {
+
+    const {name, image, likes} = this.props.toyData
+
     return (
       <div className="card">
-        <h2>{'' /* Toy's Name */}</h2>
-        <img src={'' /* Toy's Image */} alt={/* Toy's Name */} className="toy-avatar" />
-        <p>{'' /* Toy's Likes */} Likes </p>
-        <button className="like-btn">Like {'<3'}</button>
-        <button className="del-btn">Donate to GoodWill</button>
+        <h2>{name}</h2>
+        <img src={image} alt={name} className="toy-avatar" />
+        <p>{likes} Likes </p>
+        <button className="like-btn" onClick={this.handleLikes}>Like {'<3'}</button>
+        <button className="del-btn" onClick={this.handleDeleteToy}>Donate to GoodWill</button>
       </div>
     );
   }
-
 }
 
 export default ToyCard;
